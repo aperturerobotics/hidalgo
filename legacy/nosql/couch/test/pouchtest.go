@@ -35,6 +35,7 @@ func Pouch() nosqltest.Database {
 				}
 			})
 
+			ctx := context.Background()
 			name := fmt.Sprintf("db-%d", rand.Int())
 
 			qs, err := couch.Dial(false, couch.DriverPouch, dir+"/"+name, name, nil)
@@ -44,7 +45,6 @@ func Pouch() nosqltest.Database {
 			}
 			t.Cleanup(func() {
 				qs.Close()
-				ctx := context.TODO()
 				if c, err := kivik.New(ctx, couch.DriverPouch, dir); err == nil {
 					_ = c.DestroyDB(ctx, name)
 				}
