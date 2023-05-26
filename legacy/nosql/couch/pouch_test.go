@@ -1,3 +1,4 @@
+//go:build js
 // +build js
 
 // To run "gopherjs test -v" you must "npm install pouchdb" and "npm install pouchdb-find" for queries.

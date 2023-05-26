@@ -1,5 +1,5 @@
-//go:build !js
-// +build !js
+//go:build !js && dockertest
+// +build !js,dockertest
 
 package couch_test
 
