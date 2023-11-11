@@ -128,7 +128,11 @@ func (tx *Tx) Del(ctx context.Context, k flat.Key) error {
 }
 
 func (tx *Tx) Scan(ctx context.Context, opts ...flat.IteratorOption) flat.Iterator {
-	pit := tx.tx.NewIter(nil)
+	pit, err := tx.tx.NewIter(nil)
+	if err != nil {
+		return &Iterator{err: err}
+	}
+
 	var it flat.Iterator = &Iterator{it: pit, first: true}
 	it = flat.ApplyIteratorOptions(it, opts)
 	return it
@@ -148,7 +152,9 @@ type Iterator struct {
 
 func (it *Iterator) Reset() {
 	it.first = true
-	it.err = nil
+	if it.it != nil {
+		it.err = nil
+	}
 }
 
 func (it *Iterator) WithPrefix(pref flat.Key) flat.Iterator {
@@ -158,6 +164,10 @@ func (it *Iterator) WithPrefix(pref flat.Key) flat.Iterator {
 }
 
 func (it *Iterator) Seek(ctx context.Context, key flat.Key) bool {
+	if it.it == nil {
+		return false
+	}
+
 	it.Reset()
 	it.first = false
 	it.it.SeekGE(key)
@@ -165,6 +175,10 @@ func (it *Iterator) Seek(ctx context.Context, key flat.Key) bool {
 }
 
 func (it *Iterator) Next(ctx context.Context) bool {
+	if it.it == nil {
+		return false
+	}
+
 	if it.first {
 		it.first = false
 		it.it.SeekGE(it.pref)
@@ -180,20 +194,28 @@ func (it *Iterator) Err() error {
 }
 
 func (it *Iterator) Close() error {
-	it.it.Close()
+	if it.it != nil {
+		it.it.Close()
+	}
 	return it.Err()
 }
 
 func (it *Iterator) Key() flat.Key {
+	if it.it == nil {
+		return nil
+	}
 	return it.it.Key()
 }
 
 func (it *Iterator) Val() flat.Value {
+	if it.it == nil {
+		return nil
+	}
 	return it.it.Value()
 }
 
 func (it *Iterator) isValid() bool {
-	if !it.it.Valid() {
+	if it.it == nil || !it.it.Valid() {
 		return false
 	}
 
