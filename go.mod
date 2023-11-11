@@ -2,8 +2,6 @@ module github.com/hidal-go/hidalgo
 
 go 1.21
 
-toolchain go1.21.3
-
 require (
 	cloud.google.com/go/datastore v1.15.0
 	github.com/boltdb/bolt v1.3.1
