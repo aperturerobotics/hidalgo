@@ -26,3 +26,6 @@ vendor/
 
 # IntelliJ
 out/
+
+# emacs
+.#*
