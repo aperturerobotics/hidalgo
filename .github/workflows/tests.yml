@@ -32,6 +32,9 @@ jobs:
       - name: Build Go
         run: go build -v ./...
 
-      #- name: Test Go
-      #  run: make test
-      #  timeout-minutes: 15
+      - name: Vet Go
+        run: go vet ./...
+
+      - name: Test Go
+        run: go test -v ./...
+        timeout-minutes: 15
