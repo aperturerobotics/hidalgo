@@ -20,7 +20,6 @@ require (
 	go.etcd.io/bbolt v1.3.6
 	go.mongodb.org/mongo-driver v1.8.4
 	google.golang.org/api v0.73.0
-	gopkg.in/olivere/elastic.v5 v5.0.86
 )
 
 require (
@@ -58,11 +57,9 @@ require (
 	github.com/gopherjs/gopherjs v0.0.0-20220221023154-0b2280d3ff96 // indirect
 	github.com/gopherjs/jsbuiltin v0.0.0-20180426082241-50091555e127 // indirect
 	github.com/gotestyourself/gotestyourself v2.2.0+incompatible // indirect
-	github.com/josharian/intern v1.0.0 // indirect
 	github.com/klauspost/compress v1.15.1 // indirect
 	github.com/kr/pretty v0.3.0 // indirect
 	github.com/kr/text v0.2.0 // indirect
-	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/opencontainers/go-digest v1.0.0 // indirect
 	github.com/opencontainers/image-spec v1.0.2 // indirect
 	github.com/opencontainers/runc v1.1.0 // indirect
