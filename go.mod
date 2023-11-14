@@ -5,7 +5,7 @@ go 1.21
 require (
 	cloud.google.com/go/datastore v1.15.0
 	github.com/boltdb/bolt v1.3.1
-	github.com/cockroachdb/pebble v0.0.0-20231110205751-b224e8b90a87
+	github.com/cockroachdb/pebble v0.0.0-20231114155657-6682fd5e8763
 	github.com/dgraph-io/badger/v4 v4.2.0
 	github.com/go-kivik/couchdb v2.0.0+incompatible
 	github.com/go-kivik/kivik v2.0.0+incompatible
